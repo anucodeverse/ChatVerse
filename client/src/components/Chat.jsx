@@ -9,6 +9,12 @@ function Chat({ username, room }) {
   useEffect(() => {
     socket.on("receiveMessage", (data) => {
   console.log("Received:", data);
+
+  if (!data.username || !data.message) {
+    console.log("Invalid message received:", data);
+    return;
+  }
+
   setMessages((prev) => [...prev, data]);
 });
 
