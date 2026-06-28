@@ -220,7 +220,7 @@ body {
 .chat-body{
     flex:1;
     overflow-y:auto;
-    padding:30px 35px;
+    padding:25px 40px;
     background:linear-gradient(180deg,#f8fafc,#eef2ff);
     display:flex;
     flex-direction:column;
@@ -274,12 +274,14 @@ body {
     }
 }
 
-.self {
-  margin-left: auto;
+.self{
+    display:flex;
+    justify-content:flex-end;
 }
 
-.other {
-  margin-right: auto;
+.other{
+    display:flex;
+    justify-content:flex-start;
 }
 
 .message-row {
@@ -313,15 +315,12 @@ body {
 
 .message-content{
     display:inline-block;
-    min-width:90px;
-    max-width:65%;
+    width:fit-content;
+    max-width:70%;
     padding:14px 20px;
-    border-radius:20px;
+    border-radius:18px;
     white-space:pre-wrap;
     word-break:break-word;
-    overflow-wrap:break-word;
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-    transition:transform .25s ease;
 }
 
 .message-content:hover{

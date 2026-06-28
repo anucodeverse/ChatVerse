@@ -8,8 +8,9 @@ function Chat({ username, room }) {
 
   useEffect(() => {
     socket.on("receiveMessage", (data) => {
-      setMessages((prev) => [...prev, data]);
-    });
+  console.log("Received:", data);
+  setMessages((prev) => [...prev, data]);
+});
 
    socket.on("showTyping", (username) => {
   setTyping(`${username} is typing...`);
@@ -83,7 +84,9 @@ function Chat({ username, room }) {
         </div>
 
         <div className="chat-body">
-          {messages.map((msg, index) => (
+          {messages
+  .filter(msg => msg && msg.username && msg.message)
+  .map((msg, index) => (
             <div
               key={index}
               className={`message ${
