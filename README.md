@@ -202,10 +202,17 @@ Add screenshots here after deployment.
 
 Example:
 
-* Join Screen
-* Chat Room
-* Typing Indicator
-* Two Browser Windows
+## Join Page
+
+![Join Page](./images/chat.png)
+
+## Chat Page
+
+![Chat Page](./images/join.png)
+
+## Mobile View
+
+![Mobile View](./images/window.png)
 
 ---
 
