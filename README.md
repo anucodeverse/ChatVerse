@@ -204,15 +204,15 @@ Example:
 
 ## Join Page
 
-![Join Page](../images/chat.png)
+![Join Page](./images/join.png)
 
 ## Chat Page
 
-![Chat Page](../images/join.png)
+![Chat Page](./images/chat.png)
 
 ## Mobile View
 
-![Mobile View](../images/window.png)
+![Mobile View](./images/window.png)
 
 ---
 
