@@ -5,27 +5,23 @@ const cors = require("cors");
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Health check route (important for Render)
+// Health Check
 app.get("/", (req, res) => {
   res.send("Socket.io server is running 🚀");
 });
 
-// Create HTTP server
 const server = http.createServer(app);
 
-// Socket.io setup
 const io = new Server(server, {
   cors: {
-    origin: "*", // Replace with your Vercel URL in production if needed
+    origin: "*", // Replace with your Vercel URL after testing
     methods: ["GET", "POST"],
   },
 });
 
-// Socket connection
 io.on("connection", (socket) => {
   console.log("User Connected:", socket.id);
 
@@ -36,55 +32,49 @@ io.on("connection", (socket) => {
     socket.username = username;
     socket.room = room;
 
-    console.log(`${username} joined room: ${room}`);
+    console.log(`${username} joined ${room}`);
 
-    // Notify room that user joined (optional UI enhancement)
+    // Notify others in room
     socket.to(room).emit("receiveMessage", {
-      user: "System",
-      text: `${username} joined ${room}`,
+      username: "System",
+      message: `${username} joined the room`,
       room,
+      time: new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     });
   });
 
-  // Send Message (room-based)
+  // Send Message
   socket.on("sendMessage", (data) => {
-    // data = { user, text, room }
     io.to(data.room).emit("receiveMessage", data);
   });
 
-  // Typing indicator
+  // Typing
   socket.on("typing", ({ username, room }) => {
-    socket.to(room).emit("showTyping", {
-      user: username,
-      message: `${username} is typing...`,
-    });
+    socket.to(room).emit("showTyping", username);
   });
 
-  // Stop typing (optional but better UX)
-  socket.on("stopTyping", ({ room }) => {
-    socket.to(room).emit("showTyping", null);
-  });
-
-  // Disconnect
   socket.on("disconnect", () => {
-    console.log("User Disconnected:", socket.id);
+    console.log("User Disconnected");
 
-    const room = socket.room;
-    const username = socket.username;
-
-    if (room && username) {
-      socket.to(room).emit("receiveMessage", {
-        user: "System",
-        text: `${username} left the chat`,
-        room,
+    if (socket.username && socket.room) {
+      socket.to(socket.room).emit("receiveMessage", {
+        username: "System",
+        message: `${socket.username} left the room`,
+        room: socket.room,
+        time: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
       });
     }
   });
 });
 
-// Render requires dynamic port
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server Running on port ${PORT}`);
 });

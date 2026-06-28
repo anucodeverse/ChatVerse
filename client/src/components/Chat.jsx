@@ -11,13 +11,13 @@ function Chat({ username, room }) {
       setMessages((prev) => [...prev, data]);
     });
 
-    socket.on("showTyping", (user) => {
-      setTyping(`${user} is typing...`);
+   socket.on("showTyping", (username) => {
+  setTyping(`${username} is typing...`);
 
-      setTimeout(() => {
-        setTyping("");
-      }, 1000);
-    });
+  setTimeout(() => {
+    setTyping("");
+  }, 1000);
+});
 
     return () => {
       socket.off("receiveMessage");
@@ -94,8 +94,8 @@ function Chat({ username, room }) {
             >
               <div className="message-row">
                 <div className="avatar">
-                  {msg.username[0].toUpperCase()}
-                </div>
+  {msg.username?.charAt(0).toUpperCase() || "?"}
+</div>
 
                 <div>
                   <div className="username">
