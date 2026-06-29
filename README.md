@@ -6,9 +6,9 @@ A modern **real-time chat application** built using **React, Node.js, Express, a
 
 ## 🚀 Live Demo
 
-* **Frontend:** https://your-vercel-url.vercel.app
-* **Backend API:** https://your-render-url.onrender.com
-* **Demo Video:** https://your-demo-video-link
+* **Frontend:** https://chat-verse-f4ez-59qslr40l.vercel.app/
+* **Backend API:** https://chatverse-dzcm.onrender.com/
+* **Demo Video:** (https://www.loom.com/share/e6c1032b93644b74b87a97f2caa24b16)
 
 ---
 
@@ -245,13 +245,13 @@ Render
 
 # 👨‍💻 Author
 
-**Anu**
+**Ananthalakshmi**
 
 GitHub:
-https://github.com/yourusername
+https://github.com/anucodeverse
 
 LinkedIn:
-https://linkedin.com/in/yourprofile
+https://www.linkedin.com/in/anantha-lakshmi-38349a326?utm_source=share_via&utm_content=profile&utm_medium=member_android
 
 ---
 
